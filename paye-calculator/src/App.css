@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.title {
+  color: #86202b;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center; 
+}
+.results-title {
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.image { 
+  display: block;
+  margin: 0 auto;
+  max-height: 100px; 
+}

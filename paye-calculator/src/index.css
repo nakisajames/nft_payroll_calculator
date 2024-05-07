@@ -11,3 +11,117 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+body {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color:#f0f0f0;
+  gap: 4rem;
+}
+.title {
+  color: #86202b;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+.card {
+  background-color: white;
+  width: 700px;
+  border-radius: 1rem;
+}
+.card-container {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+}
+.inputs-section,
+.outputs-section {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.outputs-section {
+  background-color: #86202b;
+  padding: 2rem;
+}
+.input-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.inputs-section {
+  gap: 2rem;
+}
+label {
+  color: black;
+  font-size: 14px;
+}
+.input {
+  position: relative;
+}
+.input input {
+  width: 100%;
+  text-align: right;
+  padding: 0.5rem;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--Very-dark-cyan);
+  background-color: #f7a0ac;
+  outline-color:#05a9c7;
+}
+.outputs-section {
+  gap: 1rem;
+}
+.calculate-btn {
+  margin-bottom: 10px;
+  /* margin-top: auto; */
+  padding: 0.5rem;
+  text-transform: uppercase;
+  background-color: #86202b ;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: black;
+  /* opacity: 40%; */
+}
+.calculate-btn:hover {
+  opacity: 100%;
+}
+.gross-pay {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.gross-pay h2 {
+  color: black;
+  font-size: 2rem;
+}
+.gross-pay p {
+  color: white;
+}
+.output {
+  position: relative;
+}
+.output input {
+  width: 100%;
+  text-align: right;
+  padding: 0.5rem;
+  border: none;
+  font-size: 1.2rem;
+  background-color: none;
+  outline-color:none;
+}
+.button-sec {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.selector {
+display: flex;
+flex-direction: row;
+padding: 0.5rem;
+}

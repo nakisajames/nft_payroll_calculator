@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import CountrySelector from "./UI/CountrySelector";
+import SouthAfricaUI from "./UI/SouthAfrica";
+import { useState } from "react";
 
 function App() {
+  const [selectedCountry, setSelectedCountry] = useState("South Africa");
+
+  const handleSelectCountry = (country) => {
+    setSelectedCountry(country);
+  };
+
+  const renderCountryUI = () => {
+    switch (selectedCountry) {
+      case "South Africa":
+        return <SouthAfricaUI country={selectedCountry} />;
+      // case 'Nigeria':
+      //   return <NigeriaUI country={selectedCountry} />;
+      // case 'Kenya':
+      //   return <KenyaUI country={selectedCountry} />;
+      default:
+        return null; // Return null for other countries if UI is not available
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div>
+      <header>
+        <img
+          src={require("./static/img/logo/nft_app_logo.jpeg")}
+          class="image"
+          alt="NFT App Logo"
+        />
+        <h4 class="title">Country Payroll Calculator</h4>
+        <CountrySelector onSelectCountry={handleSelectCountry} />
       </header>
+      {renderCountryUI()}
     </div>
   );
 }
