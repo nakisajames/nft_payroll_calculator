@@ -1,6 +1,7 @@
 import "./App.css";
 import CountrySelector from "./UI/CountrySelector";
 import SouthAfricaUI from "./UI/SouthAfrica";
+import GhanaUI from "./UI/Ghana";
 import { useState } from "react";
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
       //   return <NigeriaUI country={selectedCountry} />;
       // case 'Kenya':
       //   return <KenyaUI country={selectedCountry} />;
+      case "Ghana":
+        return <GhanaUI country={selectedCountry} />;
       default:
         return null; // Return null for other countries if UI is not available
     }

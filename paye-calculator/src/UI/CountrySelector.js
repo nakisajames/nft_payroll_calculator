@@ -2,7 +2,7 @@
 import React from 'react'; 
 
 function CountrySelector({ onSelectCountry }) {
-  const countries = ['Nigeria', 'South Africa', 'Kenya'];
+  const countries = ['Nigeria', 'South Africa', 'Kenya', 'Ghana'];
 
   const handleChange = (e) => {
     onSelectCountry(e.target.value);
