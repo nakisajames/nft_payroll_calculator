@@ -5,7 +5,7 @@ function GhanaUI({ country }) {
   const currency = getCurrency(country);
   
   const [income, setIncome] = useState(0);
-  const [isResident, setIsResident] = useState("");
+  const [isResident, setIsResident] = useState("Resident");
   const [grossPay, setGrossPay] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [paye, setPaye] = useState(0);
@@ -21,26 +21,26 @@ function GhanaUI({ country }) {
         if (taxableIncome <= 490) {
           paye = 0;
         } else if (taxableIncome <= 600) {
-          paye += (taxableIncome - 490) * 0.05;
+          paye = (taxableIncome - 490) * 0.05;
         } else if (taxableIncome <= 730) {
-          paye += 110 * 0.05 + (taxableIncome - 600) * 0.1;
+          paye = 110 * 0.05 + (taxableIncome - 600) * 0.1;
         } else if (taxableIncome <= 3896.67) {
-          paye += 110 * 0.05 + 130 * 0.1 + (taxableIncome - 730) * 0.175;
+          paye = 110 * 0.05 + 130 * 0.1 + (taxableIncome - 730) * 0.175;
         } else if (taxableIncome <= 19896.67) {
-          paye +=
+          paye =
             110 * 0.05 +
             130 * 0.1 +
             3166.67 * 0.175 +
             (taxableIncome - 3896.67) * 0.25;
         } else if (taxableIncome <= 50416.67) {
-          paye +=
+          paye =
             110 * 0.05 +
             130 * 0.1 +
             3166.67 * 0.175 +
             16000 * 0.25 +
             (taxableIncome - 19896.67) * 0.3;
         } else {
-          paye +=
+          paye =
             110 * 0.05 +
             130 * 0.1 +
             3166.67 * 0.175 +
@@ -49,7 +49,7 @@ function GhanaUI({ country }) {
             (taxableIncome - 50416.67) * 0.35;
         }
       } else {
-        return taxableIncome * 0.25;
+        paye = taxableIncome * 0.25;
       }
 
       return paye;
@@ -57,17 +57,18 @@ function GhanaUI({ country }) {
 
     // Convert inputs to numbers
     const grossPay = parseFloat(income);
+    const is_resident = isResident.toUpperCase();
 
     // Calculate social security
     let socialSecurity = grossPay * 0.055;
 
     // Calculate taxable income
     let taxableIncome = grossPay - socialSecurity;
-    console.log(taxableIncome);
+    
 
     // Calculate PAYE
     let paye;
-    paye = computePAYE(isResident, taxableIncome);
+    paye = computePAYE(is_resident, taxableIncome);
 
     // Calculate the netpay
     const netPay = grossPay - (socialSecurity + paye);
@@ -113,15 +114,15 @@ function GhanaUI({ country }) {
                     />
                   </div>
                 </div>
-                <div class="input-sec">
-                  <label for="is_resident">Residential Status:</label>
-                  <div class="input">
+                <div className="input-sec">
+                  <label htmlFor="is_resident">Residential Status:</label>
+                  <div className="input">
                     <select
                       id="is_resident"
                       name="is_resident"
-                      class="input"
+                      className="input"
                       value={isResident}
-                      onChange={(e) => setIsResident(e.target.value).toUpper()}
+                      onChange={(e) => setIsResident(e.target.value)}
                     >
                       <option value="Resident">Resident</option>
                       <option value="Non-Resident">Non-Resident</option>
