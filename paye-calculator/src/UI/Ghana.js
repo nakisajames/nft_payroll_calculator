@@ -1,14 +1,14 @@
 import React, { useState } from "react";
+import getCurrency from "../lib/utils";
 
 function GhanaUI({ country }) {
+  const currency = getCurrency(country);
+  
   const [income, setIncome] = useState(0);
-  const [currency, setCurrency] = useState("Ghanaian Cedis (GHS)");
   const [isResident, setIsResident] = useState("");
   const [grossPay, setGrossPay] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [paye, setPaye] = useState(0);
-  const [taxableIncome, setTaxableIncome] = useState(0);
-  const [result, setResult] = useState(0);
   const [netPay, setNetPay] = useState(0);
 
   const calculatePAYE = (e) => {
@@ -157,7 +157,7 @@ function GhanaUI({ country }) {
               </div>
               <div class="gross-pay">
                 <p>
-                  <label>Social Security (Employee):</label>
+                  <label>Social Security-Employee (SSNIT):</label>
                 </p>
                 <h4 id="social-security-value">{socialSecurity.toFixed(2)}</h4>
               </div>
