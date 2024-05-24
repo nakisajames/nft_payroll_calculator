@@ -1,65 +1,55 @@
 // CountryUI.js
 import React, { useState } from "react";
 
-function SouthAfricaUI({ country }) {
+function ZambiaUI({ country }) {
   const [income, setIncome] = useState(0);
   const [deductions, setDeductions] = useState(0);
-  const [uif, setUIF] = useState(177);
-  const [age, setAge] = useState(0);
+  const [nssf, setNSSF] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
+  const [nhi,setNHI] = useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const ageGroup = parseFloat(age);
-    const otherDeductions = parseFloat(deductions);
+    const otherDeductions = parseFloat(deductions) * 12;
   
-    // Calculate annual pay
-    const annualPay = grossPay * 12;
+    const healthInsurance = grossPay * 0.01;
   
-    // Calculate tax rebate based on age group
-    let taxRebate;
-    if (ageGroup < 65) {
-      taxRebate = 17235;
-    } else if (ageGroup <= 75) {
-      taxRebate = 9444;
+    // Calculate the social security
+    let socialSecurity;
+    if (grossPay <= 21476) {
+      socialSecurity = grossPay * 0.05;
     } else {
-      taxRebate = 3145;
+      socialSecurity = 1342;
     }
   
-    // Calculate PAYE
+    // Calculate the taxable income
+    const taxableIncome = grossPay - otherDeductions;
+  
     let paye;
-    if (annualPay < 237100) {
-      paye = (annualPay * 0.18 - taxRebate) / 12;
-    } else if (annualPay < 370500) {
-      paye = ((annualPay - 237100) * 0.26 + 42678 - taxRebate) / 12;
-    } else if (annualPay < 512800) {
-      paye = ((annualPay - 370500) * 0.31 + 77362 - taxRebate) / 12;
-    } else if (annualPay < 673000) {
-      paye = ((annualPay - 512800) * 0.36 + 121475 - taxRebate) / 12;
-    } else if (annualPay < 857900) {
-      paye = ((annualPay - 673000) * 0.39 + 179147 - taxRebate) / 12;
-    } else if (annualPay < 1817000) {
-      paye = ((annualPay - 857900) * 0.41 + 251258 - taxRebate) / 12;
+    if (taxableIncome < 5101) {
+      paye = 0;
+    } else if (taxableIncome < 7101) {
+      paye = ((taxableIncome - 5100) * 0.2) ;
+    } else if (taxableIncome < 9201) {
+      paye = (((taxableIncome - 7100) * 0.3) + 400) ;
     } else {
-      paye = ((annualPay - 1817000) * 0.45 + 644489 - taxRebate) / 12;
+      paye = (((taxableIncome - 9200) * 0.37) + 1030) ;
     }
-  
-    // Calculate UIF
-    const uifAmount = parseFloat(uif);
-  
     // Calculate net pay
-    const netPay = grossPay - (paye + uifAmount + otherDeductions);
+    const netPay = grossPay - (paye + socialSecurity + healthInsurance);
   
     // Update results
     setGrossPay(grossPay);
-    setUIF(uifAmount);
+    setNSSF(socialSecurity);
     setPAYE(paye);
     setNetPay(netPay);
+    setNHI(healthInsurance);
   };
+  
   
   return (
     <div>
@@ -80,18 +70,6 @@ function SouthAfricaUI({ country }) {
                 class="input"
                 onChange={(e) => setIncome(e.target.value)}
               />
-              </div>
-              </div>
-              <div class ="input-sec">
-              <label>Age Group:</label>
-              <div class="input">
-              <input type="number" name="age" id="age" value={age} onChange={(e) => setAge(e.target.value)} />
-              </div>
-              </div>
-              <div class ="input-sec">
-              <label>UIF:</label>
-              <div class="input">
-              <input type="number" name="uif" id="uif" defaultValue={uif} onChange={(e) => setUIF(e.target.value)} readOnly/>
               </div>
               </div>
               <div class ="input-sec">
@@ -123,12 +101,16 @@ function SouthAfricaUI({ country }) {
                     <h4 id="gross-pay-value">{grossPay.toFixed(2)}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>UIF:</label></p>
-                    <h4 id="paye-value">{uif.toFixed(2)}</h4>
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{nssf.toFixed(2)}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>PAYE:</label></p>     
-                    <h4 id="paye-value">{paye.toFixed(2)}</h4>
+                    <p><label>National Health Insurance:</label></p>     
+                    <h4 id="paye-value">{nhi.toFixed(2)}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>PAYE:</label></p>
+                    <h4 id="net-pay-value">{paye.toFixed(2)}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Net Pay:</label></p>
@@ -142,4 +124,4 @@ function SouthAfricaUI({ country }) {
   );
 }
 
-export default SouthAfricaUI;
+export default ZambiaUI;

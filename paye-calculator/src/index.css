@@ -125,3 +125,36 @@ display: flex;
 flex-direction: row;
 padding: 0.5rem;
 }
+.input select {
+  width: 100%;
+  text-align: right;
+  padding: 0.5rem;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--Very-dark-cyan);
+  background-color: #f7a0ac;
+  outline-color: #05a9c7;
+}
+
+@media screen and (min-width: 768px) {
+  .card-container {
+    flex-direction: row;
+  }
+
+  .inputs-section {
+    width: 50%;
+    padding: 0 20px;
+  }
+
+  .outputs-section {
+    width: 50%;
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .inputs-section,
+  .outputs-section {
+    width: 100%;
+  }
+}
