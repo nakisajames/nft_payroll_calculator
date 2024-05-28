@@ -10,6 +10,22 @@ import CapeVerdeUI from "./UI/CapeVerde";
 import CentralAfricaUI from "./UI/CentralAfrica";
 import LesothoUI from "./UI/Lesotho";
 import EritreaUI from "./UI/Eritrea";
+import SudanUI from "./UI/Sudan";
+import IvoryCoastUI from "./UI/IvoryCoast";
+import NigerUI from "./UI/Niger";
+import BeninUI from "./UI/Benin";
+import ComorosUI from "./UI/Comoros";
+import ChadUI from "./UI/Chad";
+import AlgeriaUI from "./UI/Algeria";
+import EthiopiaUI from "./UI/Ethiopia";
+import TunisiaUI from "./UI/Tunisia";
+import LibyaUI from "./UI/Libya";
+import SierraLeoneUI from "./UI/SierraLeone";
+import BurkinaFasoUI from "./UI/BurkinaFaso";
+import LiberiaUI from "./UI/Liberia";
+import MauritiusUI from "./UI/Mauritius";
+import MaliUI from "./UI/Mali";
+import SomaliaUI from "./UI/Somalia";
 import { useState } from "react";
 import SwazilandUI from "./UI/Swaziland";
 import NamibiaUI from "./UI/Namibia";
@@ -42,6 +58,10 @@ import GuineaBissauUI from './UI/GuineaBissau';
 import LiberiaUI from './UI/Liberia';
 import MauritaniaUI from './UI/Mauritania';
 import UgandaUI from './UI/Uganda';
+
+
+
+
 
 
 
@@ -145,6 +165,48 @@ function App() {
       return <MauritaniaUI country={selectedCountry} />;
       case "Uganda":
         return <UgandaUI country={selectedCountry} />;
+
+      case "Sudan":
+        return <SudanUI country={selectedCountry} />
+
+      case "Ivory Coast":
+        return <IvoryCoastUI country={selectedCountry} />
+        
+      case "Benin":
+        return <BeninUI country={selectedCountry} />
+
+      case "Comoros":
+        return <ComorosUI country={selectedCountry} />
+
+      case "Chad":
+        return <ChadUI country={selectedCountry} />
+
+      case "Algeria":
+        return <AlgeriaUI country={selectedCountry} />
+
+      case "Ethiopia":
+        return <EthiopiaUI country={selectedCountry} />
+
+      case "Tunisia":
+        return <TunisiaUI country={selectedCountry} />
+
+      case "Libya":
+        return <LibyaUI country={selectedCountry} />
+
+      case "Sierra Leone":
+        return <SierraLeoneUI country={selectedCountry} />
+
+      case "Burkina Faso":
+        return <BurkinaFasoUI country={selectedCountry} />;
+
+      case "Mauritius":
+        return <MauritiusUI country={selectedCountry} />;
+
+      case "Mali":
+        return <MaliUI country={selectedCountry} />;
+
+      case "Somalia":
+        return <SomaliaUI country={selectedCountry} />;
       default:
         return null; // Return null for other countries if UI is not available
     }

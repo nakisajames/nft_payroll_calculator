@@ -23,6 +23,12 @@
             "shortForm": "BWP"
         }
     },
+    "Burkina Faso": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
     "Burundi": {
         "currency": {
             "name": "Burundian Franc",
@@ -71,7 +77,7 @@
             "shortForm": "CDF"
         }
     },
-    "Cote d'Ivoire": {
+    "Ivory Coast": {
         "currency": {
             "name": "West African CFA Franc",
             "shortForm": "XOF"
