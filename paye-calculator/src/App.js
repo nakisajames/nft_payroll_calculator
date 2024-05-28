@@ -26,12 +26,10 @@ import LiberiaUI from "./UI/Liberia";
 import MauritiusUI from "./UI/Mauritius";
 import MaliUI from "./UI/Mali";
 import SomaliaUI from "./UI/Somalia";
-import { useState } from "react";
 import SwazilandUI from "./UI/Swaziland";
 import NamibiaUI from "./UI/Namibia";
 import BostwanaUI from "./UI/Bostwana";
 import ZambiaUI from "./UI/Zambia";
-import LesothoUI from "./UI/Lesotho";
 import ZimbabweUI from "./UI/Zimbabwe";
 import MozambiqueUI from "./UI/Mozambique";
 import MalawiUI from "./UI/Malawi";
@@ -46,7 +44,6 @@ import RwandaUI from "./UI/Rwanda";
 import TanzaniaUI from "./UI/Tanzania";
 import NigeriaUI from "./UI/Nigeria";
 import SenegalUI from "./UI/Senegal";
-import NigerUI from "./UI/Niger";
 import EygptUI from "./UI/Eygpt";
 import MoroccoUI from "./UI/Morocco";
 import SouthSudanUI from './UI/SouthSudan';
@@ -55,10 +52,9 @@ import GuineaUI from './UI/Guinea';
 import CameroonUI from './UI/Cameroon';
 import GambiaUI from "./UI/Gambia";
 import GuineaBissauUI from './UI/GuineaBissau';
-import LiberiaUI from './UI/Liberia';
 import MauritaniaUI from './UI/Mauritania';
 import UgandaUI from './UI/Uganda';
-
+import { useState } from "react";
 
 
 
