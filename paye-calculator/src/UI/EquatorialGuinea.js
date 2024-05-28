@@ -3,64 +3,53 @@ import React, { useState } from "react";
 import "../index.css"
 import { formatNumber } from "../utils";
 
-function MoroccoUI({ country }) {
+function EquatorialGuineaUI({ country }) {
   const [income, setIncome] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay, setGrossPay] = useState(0);
   const [netPay, setNetPay] = useState(0);
   const [paye, setPAYE] = useState(0);
-  const [nhi, setNHI] = useState(0);
-
-  const calculateSocialSecurity = (income) => {
-    if (income <= 6000) {
-      socialSecurity = grossPay * 0.0448;
-    } else {
-      socialSecurity = 6000 * 0.0448;
-    }
-  };
+  const [protectionFund, setProtectionFund] = useState(0);
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
 
-    const healthInsurance = grossPay * 0.0226;
+    const protection_fund = grossPay * 0.005;
 
     // Calculate the social security
-    let socialSecurity;
-    if (grossPay <= 6000) {
-      socialSecurity = grossPay * 0.0448;
-    } else {
-      socialSecurity = 6000 * 0.0448;
-    }
-    console.log(socialSecurity);
-    // Calculate the taxable income
-    const taxableIncome = (grossPay - socialSecurity - healthInsurance) * 12;
+   const social_security = grossPay * 0.045
+
+    // Calculate the annual income
+    const annualIncome = grossPay  * 12;
 
     let paye;
-    if (taxableIncome <= 30000) {
-      paye = 0;
-    } else if (taxableIncome <= 50000) {
-      paye = ((taxableIncome - 30000) * 0.1) / 12;
-    } else if (taxableIncome <= 60000) {
-      paye = (2000 + (taxableIncome - 50000) * 0.2) / 12;
-    } else if (taxableIncome <= 80000) {
-      paye = (4000 + (taxableIncome - 60000) * 0.3) / 12;
-    } else if (taxableIncome <= 180000) {
-      paye = (10000 + (taxableIncome - 80000) * 0.34) / 12;
+    if (annualIncome <= 1000000) {
+        paye = 0;
+    } else if (annualIncome <= 3000000) {
+        paye = ((annualIncome - 1000000) * 0.1) / 12;
+    } else if (annualIncome <= 5000000) {
+        paye = ((annualIncome - 3000000) * 0.15 + 200000) / 12;
+    } else if (annualIncome <= 10000000) {
+        paye = ((annualIncome - 5000000) * 0.2 + 500000) / 12;
+    } else if (annualIncome <= 15000000) {
+        paye = ((annualIncome - 10000000) * 0.25 + 1500000) / 12;
+    } else if (annualIncome <= 20000000) {
+        paye = ((annualIncome - 15000000) * 0.3 + 2750000) / 12;
     } else {
-      paye = (44000 + (taxableIncome - 180000) * 0.38) / 12;
+        paye = ((annualIncome - 20000000) * 0.35 + 4250000) / 12;
     }
 
     // Calculate net pay
-    const netPay = grossPay - (paye + socialSecurity + healthInsurance);
+    const netPay = grossPay - (paye + social_security + protection_fund);
 
     // Update results
     setGrossPay(grossPay);
-    setSocialSecurity(socialSecurity);
+    setSocialSecurity(social_security);
     setPAYE(paye);
     setNetPay(netPay);
-    setNHI(healthInsurance);
+    setProtectionFund(protection_fund);
   };
 
   return (
@@ -113,9 +102,9 @@ function MoroccoUI({ country }) {
               </div>
               <div class="gross-pay">
                 <p>
-                  <label>National Health Insurance:</label>
+                  <label>Work Protection Fund:</label>
                 </p>
-                <h4 id="paye-value">{formatNumber(nhi.toFixed(0))}</h4>
+                <h4 id="paye-value">{formatNumber(protectionFund.toFixed(0))}</h4>
               </div>
               <div class="gross-pay">
                 <p>
@@ -137,4 +126,4 @@ function MoroccoUI({ country }) {
   );
 }
 
-export default MoroccoUI;
+export default EquatorialGuineaUI;

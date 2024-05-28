@@ -1,5 +1,6 @@
 // CountryUI.js
 import React, { useState } from "react";
+import { formatNumber } from "../utils";
 
 function NigeriaUI({ country }) {
   const [income, setIncome] = useState(0);
@@ -180,7 +181,7 @@ const gross_relief = totalTaxableEarnings * 0.2
             <h4 class="results-title">Results</h4>
                 <div class="gross-pay">
                     <p><label>Gross Pay:</label></p>
-                    <h4 id="gross-pay-value">{grossPay.toFixed(0)}</h4>
+                    <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 {/* <div class="gross-pay">
                     <p><label>Housing Allowance:</label></p>
@@ -192,15 +193,15 @@ const gross_relief = totalTaxableEarnings * 0.2
                 </div> */}
                 <div class="gross-pay">
                     <p><label>NHIF:</label></p>
-                    <h4 id="paye-value">{nhif.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(nhif.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>National Housing Fund:</label></p>
-                    <h4 id="paye-value">{nhf.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(nhf.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Pension:</label></p>
-                    <h4 id="paye-value">{pension.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(pension.toFixed(0))}</h4>
                 </div>
                 {/* <div class="gross-pay">
                     <p><label>Consolidated Relief:</label></p>
@@ -212,11 +213,11 @@ const gross_relief = totalTaxableEarnings * 0.2
                 </div> */}
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
-                    <h4 id="paye-value">{paye.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Net Pay:</label></p>
-                    <h4 id="net-pay-value">{netPay.toFixed(0)}</h4>
+                    <h4 id="net-pay-value">{formatNumber(netPay.toFixed(0))}</h4>
                 </div>
             </div>
           </div>

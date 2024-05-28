@@ -3,9 +3,9 @@ import React from 'react';
 
 function CountrySelector({ onSelectCountry }) {
   const countries = 
-  ['Nigeria', 'South Africa', 'Kenya', 'Swaziland', 'Namibia', 'Bostwana', 'Zambia', 'Lesotho','Zimbabwe',
+  ['Nigeria', 'South Africa', 'Uganda', 'Kenya', 'Swaziland', 'Namibia', 'Bostwana', 'Zambia', 'Lesotho','Zimbabwe',
 'Mozambique', 'Malawi','Madagscar','Angola','DRC','Congo','Gabon','Burundi','Rwanda','Tanzania','Angola','Senegal','Niger',
-'Eygpt','Morocco',];
+'Eygpt','Morocco','South Sudan','Equatorial Guinea', 'Guinea','Cameroon','Gambia','Guinea Bissau','Liberia','Mauritania'];
 
   const handleChange = (e) => {
     onSelectCountry(e.target.value);

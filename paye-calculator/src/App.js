@@ -24,6 +24,15 @@ import SenegalUI from "./UI/Senegal";
 import NigerUI from "./UI/Niger";
 import EygptUI from "./UI/Eygpt";
 import MoroccoUI from "./UI/Morocco";
+import SouthSudanUI from './UI/SouthSudan';
+import EquatorialGuineaUI from './UI/EquatorialGuinea';
+import GuineaUI from './UI/Guinea';
+import CameroonUI from './UI/Cameroon';
+import GambiaUI from "./UI/Gambia";
+import GuineaBissauUI from './UI/GuineaBissau';
+import LiberiaUI from './UI/Liberia';
+import MauritaniaUI from './UI/Mauritania';
+import UgandaUI from './UI/Uganda';
 
 function App() {
   const [selectedCountry, setSelectedCountry] = useState("South Africa");
@@ -80,6 +89,24 @@ function App() {
         return <EygptUI country={selectedCountry} />;
       case "Morocco":
         return <MoroccoUI country={selectedCountry} />;
+      case "South Sudan":
+        return <SouthSudanUI country={selectedCountry} />;
+      case "Equatorial Guinea":
+      return <EquatorialGuineaUI country={selectedCountry} />;
+      case "Guinea":
+      return <GuineaUI country={selectedCountry} />;
+      case "Cameroon":
+      return <CameroonUI country={selectedCountry} />;
+      case "Gambia":
+        return <GambiaUI country={selectedCountry} />;
+      case "Guinea Bissau":
+        return <GuineaBissauUI country={selectedCountry} />;
+      case "Liberia":
+      return <LiberiaUI country={selectedCountry} />;
+      case "Mauritania":
+      return <MauritaniaUI country={selectedCountry} />;
+      case "Uganda":
+        return <UgandaUI country={selectedCountry} />;
       default:
         return null; // Return null for other countries if UI is not available
     }

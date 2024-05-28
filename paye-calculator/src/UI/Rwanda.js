@@ -1,5 +1,6 @@
 // CountryUI.js
 import React, { useState } from "react";
+import { formatNumber } from "../utils";
 
 function RwandaUI({ country }) {
   const [income, setIncome] = useState(0);
@@ -90,27 +91,27 @@ const calculateSocialSecurity = (grossPay) => {
             <h4 class="results-title">Results</h4>
                 <div class="gross-pay">
                     <p><label>Gross Pay:</label></p>
-                    <h4 id="gross-pay-value">{grossPay.toFixed(2)}</h4>
+                    <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Social Security:</label></p>
-                    <h4 id="paye-value">{socialSecurity.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Maternity:</label></p>
-                    <h4 id="paye-value">{maternity.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(maternity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label> CBHI (Community-Based Health Insurance):</label></p>
-                    <h4 id="paye-value">{cbhi.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(cbhi.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
-                    <h4 id="paye-value">{paye.toFixed(0)}</h4>
+                    <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Net Pay:</label></p>
-                    <h4 id="net-pay-value">{netPay.toFixed(0)}</h4>
+                    <h4 id="net-pay-value">{formatNumber(netPay.toFixed(0))}</h4>
                 </div>
             </div>
           </div>

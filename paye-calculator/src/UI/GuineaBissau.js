@@ -2,53 +2,54 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function ZimbabweUI({ country }) {
+function GuineaBissauUI({ country }) {
   const [income, setIncome] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
-  const [aids,setAIDS] =useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-  
-    // Calculate annual pay
-    const annualPay = grossPay * 12;
+
+    // Calculate social security per month
+    const social_security = grossPay * 0.08
+
+    //Calculate taxable Income
+    const taxableIncome = (grossPay - social_security)* 12
   
     // Calculate PAYE
     let paye;
-        if (annualPay <= 300000) {
-            paye = (annualPay * 0) / 12;
-        } else if (annualPay <= 720000) {
-            paye = ((annualPay - 300000) * 0.2) / 12;
-        } else if (annualPay <= 1440000) {
-            paye = (84000 + (annualPay - 720000) * 0.25) / 12;
-        } else if (annualPay <= 2880000) {
-            paye = (264000 + (annualPay - 1440000) * 0.3) / 12;
-        } else if (annualPay <= 6000000) {
-            paye = (696000 + (annualPay - 2880000) * 0.35) / 12;
-        } else {
-            paye = (1788000 + (annualPay - 6000000) * 0.4) / 12;
-        }
-  
-    // Calculate social security per month
-    const social_security = grossPay * 0.045
-
-    //Calculate AIDS
-    const aids = paye * 0.03
+    if (taxableIncome <= 500000) {
+        paye = (taxableIncome * 0.01) / 12;
+    } else if (taxableIncome <= 1000000) {
+        paye = ((taxableIncome - 500000) * 0.06 + 5000) / 12;
+    } else if (taxableIncome <= 2500000) {
+        paye = ((taxableIncome - 1000000) * 0.08 + 5000 + 30000) / 12;
+    } else if (taxableIncome <= 3600000) {
+        paye = ((taxableIncome - 2500000) * 0.1 + 5000 + 30000 + 120000) / 12;
+    } else if (taxableIncome <= 4806000) {
+        paye = ((taxableIncome - 3600000) * 0.12 + 5000 + 30000 + 120000 + 110000) / 12;
+    } else if (taxableIncome <= 9000000) {
+        paye = ((taxableIncome - 4806000) * 0.14 + 5000 + 30000 + 120000 + 110000 + 144720) / 12;
+    } else if (taxableIncome <= 13200000) {
+        paye = ((taxableIncome - 9000000) * 0.16 + 5000 + 30000 + 120000 + 110000 + 144720 + 587160) / 12;
+    } else if (taxableIncome <= 18000000) {
+        paye = ((taxableIncome - 13200000) * 0.18 + 5000 + 30000 + 120000 + 110000 + 144720 + 587160 + 672000) / 12;
+    } else {
+        paye = ((taxableIncome - 18000000) * 0.2 + 5000 + 30000 + 120000 + 110000 + 144720 + 587160 + 672000 + 864000) / 12;
+    }
 
     // Calculate net pay
-    const netPay = grossPay - (paye + social_security + aids);
+    const netPay = grossPay - (paye + social_security);
   
     // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
     setSocialSecurity(social_security)
-    setAIDS(aids)
   };
   
   return (
@@ -93,10 +94,6 @@ function ZimbabweUI({ country }) {
                     <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>AIDS:</label></p>
-                    <h4 id="paye-value">{formatNumber(aids.toFixed(0))}</h4>
-                </div>
-                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -112,4 +109,4 @@ function ZimbabweUI({ country }) {
   );
 }
 
-export default ZimbabweUI;
+export default GuineaBissauUI;

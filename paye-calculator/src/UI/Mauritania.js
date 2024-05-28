@@ -2,53 +2,49 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function ZimbabweUI({ country }) {
+function MauritaniaUI({ country }) {
   const [income, setIncome] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
-  const [aids,setAIDS] =useState(0)
+  const [wpf,setWpf] = useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-  
-    // Calculate annual pay
-    const annualPay = grossPay * 12;
+
+    // Calculate social security per month
+    const social_security = grossPay * 0.05
+
+    //Calculate work protection fund
+    const protection_fund =  0.01 * 15000
+
+    //Calculate taxable Income
+    const taxableIncome =  (grossPay -(social_security + protection_fund)) * 12
   
     // Calculate PAYE
     let paye;
-        if (annualPay <= 300000) {
-            paye = (annualPay * 0) / 12;
-        } else if (annualPay <= 720000) {
-            paye = ((annualPay - 300000) * 0.2) / 12;
-        } else if (annualPay <= 1440000) {
-            paye = (84000 + (annualPay - 720000) * 0.25) / 12;
-        } else if (annualPay <= 2880000) {
-            paye = (264000 + (annualPay - 1440000) * 0.3) / 12;
-        } else if (annualPay <= 6000000) {
-            paye = (696000 + (annualPay - 2880000) * 0.35) / 12;
-        } else {
-            paye = (1788000 + (annualPay - 6000000) * 0.4) / 12;
-        }
-  
-    // Calculate social security per month
-    const social_security = grossPay * 0.045
-
-    //Calculate AIDS
-    const aids = paye * 0.03
+    if (taxableIncome <= 6000) {
+        paye = 0;
+    } else if (taxableIncome <= 9000) {
+        paye = ((taxableIncome - 6000) * 0.15) / 12;
+    } else if (taxableIncome <= 21000) {
+        paye = ((taxableIncome - 9000) * 0.25 + 450) / 12;
+    } else {
+        paye = ((taxableIncome - 21000) * 0.4 + 450 + 3000) / 12;
+    }
 
     // Calculate net pay
-    const netPay = grossPay - (paye + social_security + aids);
+    const netPay = grossPay - (paye + social_security + protection_fund);
   
     // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
     setSocialSecurity(social_security)
-    setAIDS(aids)
+    setWpf(protection_fund)
   };
   
   return (
@@ -93,8 +89,8 @@ function ZimbabweUI({ country }) {
                     <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>AIDS:</label></p>
-                    <h4 id="paye-value">{formatNumber(aids.toFixed(0))}</h4>
+                    <p><label>Work Protection Fund:</label></p>
+                    <h4 id="paye-value">{formatNumber(wpf.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
@@ -112,4 +108,4 @@ function ZimbabweUI({ country }) {
   );
 }
 
-export default ZimbabweUI;
+export default MauritaniaUI;

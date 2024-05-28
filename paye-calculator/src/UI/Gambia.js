@@ -2,53 +2,63 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function ZimbabweUI({ country }) {
+function GambiaUI({ country }) {
   const [income, setIncome] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
-  const [aids,setAIDS] =useState(0)
+  const [nhif,setNhif] =useState(0)
+  const [diseaseInsurance,setDiseaseInsurance] = useState(0)
+  const [pension,setPension] = useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
+ 
+    //Calculate nhif
+    const nhif = grossPay * 0.03
+    
+    //Calculate housing fund
+    const pension = 0.025 * grossPay
+
+     //Calculate social security
+     const social_security = 0.05 * grossPay
+
+    //Calculate the national disease insurance
+    const insurance = 0.01 * grossPay
   
     // Calculate annual pay
-    const annualPay = grossPay * 12;
-  
-    // Calculate PAYE
-    let paye;
-        if (annualPay <= 300000) {
-            paye = (annualPay * 0) / 12;
-        } else if (annualPay <= 720000) {
-            paye = ((annualPay - 300000) * 0.2) / 12;
-        } else if (annualPay <= 1440000) {
-            paye = (84000 + (annualPay - 720000) * 0.25) / 12;
-        } else if (annualPay <= 2880000) {
-            paye = (264000 + (annualPay - 1440000) * 0.3) / 12;
-        } else if (annualPay <= 6000000) {
-            paye = (696000 + (annualPay - 2880000) * 0.35) / 12;
-        } else {
-            paye = (1788000 + (annualPay - 6000000) * 0.4) / 12;
-        }
-  
-    // Calculate social security per month
-    const social_security = grossPay * 0.045
+    const annualIncome = grossPay * 12;
 
-    //Calculate AIDS
-    const aids = paye * 0.03
+    // Calculate PAYE based on taxable pay
+    let paye;
+    if (annualIncome <= 7500) {
+        paye = 0;
+    } else if (annualIncome <= 17500) {
+        paye = ((annualIncome - 7500) * 0.1) / 12;
+    } else if (annualIncome <= 27500) {
+        paye = ((annualIncome - 17500) * 0.15 + 1000) / 12;
+    } else if (annualIncome <= 37500) {
+        paye = ((annualIncome - 27500) * 0.2 + 1000 + 1500) / 12;
+    } else if (annualIncome <= 47500) {
+        paye = ((annualIncome - 37500) * 0.25 + 1000 + 1500 + 2000) / 12;
+    } else {
+        paye = ((annualIncome - 47500) * 0.35 + 1000 + 1500 + 2000 + 2500) / 12;
+    }
 
     // Calculate net pay
-    const netPay = grossPay - (paye + social_security + aids);
+    const netPay = grossPay - (paye + social_security + nhif + pension + insurance);
   
     // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
     setSocialSecurity(social_security)
-    setAIDS(aids)
+    setPension(pension)
+    setNhif(nhif)
+    setDiseaseInsurance(insurance)
   };
   
   return (
@@ -93,8 +103,16 @@ function ZimbabweUI({ country }) {
                     <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>AIDS:</label></p>
-                    <h4 id="paye-value">{formatNumber(aids.toFixed(0))}</h4>
+                    <p><label>Pension:</label></p>
+                    <h4 id="paye-value">{formatNumber(pension.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>NHIF:</label></p>
+                    <h4 id="paye-value">{formatNumber(nhif.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>National Disease Insurance and Social Gurantee Fund:</label></p>
+                    <h4 id="paye-value">{formatNumber(diseaseInsurance.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
@@ -112,4 +130,4 @@ function ZimbabweUI({ country }) {
   );
 }
 
-export default ZimbabweUI;
+export default GambiaUI;

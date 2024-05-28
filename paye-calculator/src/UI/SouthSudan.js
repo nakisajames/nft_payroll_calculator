@@ -2,53 +2,47 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function ZimbabweUI({ country }) {
+function SouthSudanUI({ country }) {
   const [income, setIncome] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
-  const [aids,setAIDS] =useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
   
-    // Calculate annual pay
-    const annualPay = grossPay * 12;
+    // Calculate social security per month
+    const social_security = (grossPay * 0.08)
+
+    //Taxable Income
+    const taxableIncome = grossPay - social_security
   
     // Calculate PAYE
     let paye;
-        if (annualPay <= 300000) {
-            paye = (annualPay * 0) / 12;
-        } else if (annualPay <= 720000) {
-            paye = ((annualPay - 300000) * 0.2) / 12;
-        } else if (annualPay <= 1440000) {
-            paye = (84000 + (annualPay - 720000) * 0.25) / 12;
-        } else if (annualPay <= 2880000) {
-            paye = (264000 + (annualPay - 1440000) * 0.3) / 12;
-        } else if (annualPay <= 6000000) {
-            paye = (696000 + (annualPay - 2880000) * 0.35) / 12;
-        } else {
-            paye = (1788000 + (annualPay - 6000000) * 0.4) / 12;
-        }
-  
-    // Calculate social security per month
-    const social_security = grossPay * 0.045
+    if (taxableIncome <= 2000) {
+        paye = 0;
+    } else if (taxableIncome <= 5000) {
+        paye = (taxableIncome - 2000) * 0.05;
+    } else if (taxableIncome <= 10000) {
+        paye = (150 + (taxableIncome - 5000) * 0.1);
+    } else if (taxableIncome <= 15000) {
+        paye = (650 + (taxableIncome - 10000) * 0.15);
+    } else {
+        paye = (1400 + (taxableIncome - 15000) * 0.2);
+    }
 
-    //Calculate AIDS
-    const aids = paye * 0.03
 
     // Calculate net pay
-    const netPay = grossPay - (paye + social_security + aids);
+    const netPay = grossPay - (paye + social_security);
   
     // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
     setSocialSecurity(social_security)
-    setAIDS(aids)
   };
   
   return (
@@ -93,10 +87,6 @@ function ZimbabweUI({ country }) {
                     <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>AIDS:</label></p>
-                    <h4 id="paye-value">{formatNumber(aids.toFixed(0))}</h4>
-                </div>
-                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -112,4 +102,4 @@ function ZimbabweUI({ country }) {
   );
 }
 
-export default ZimbabweUI;
+export default SouthSudanUI;
