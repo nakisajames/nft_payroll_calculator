@@ -1,0 +1,320 @@
+{
+    "Algeria": {
+        "currency": {
+            "name": "Algerian Dinar",
+            "shortForm": "DZD"
+        }
+    },
+    "Angola": {
+        "currency": {
+            "name": "Angolan Kwanza",
+            "shortForm": "AOA"
+        }
+    },
+    "Benin": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Botswana": {
+        "currency": {
+            "name": "Botswana Pula",
+            "shortForm": "BWP"
+        }
+    },
+    "Burundi": {
+        "currency": {
+            "name": "Burundian Franc",
+            "shortForm": "BIF"
+        }
+    },
+    "Cameroon": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
+    "Cape Verde": {
+        "currency": {
+            "name": "Cape Verdean Escudo",
+            "shortForm": "CVE"
+        }
+    },
+    "Central African Republic": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
+    "Chad": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
+    "Comoros": {
+        "currency": {
+            "name": "Comorian Franc",
+            "shortForm": "KMF"
+        }
+    },
+    "Congo (Brazzaville)": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
+    "Congo (Kinshasa)": {
+        "currency": {
+            "name": "Congolese Franc",
+            "shortForm": "CDF"
+        }
+    },
+    "Cote d'Ivoire": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Djibouti": {
+        "currency": {
+            "name": "Djiboutian Franc",
+            "shortForm": "DJF"
+        }
+    },
+    "Egypt": {
+        "currency": {
+            "name": "Egyptian Pound",
+            "shortForm": "EGP"
+        }
+    },
+    "Equatorial Guinea": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
+    "Eritrea": {
+        "currency": {
+            "name": "Eritrean Nakfa",
+            "shortForm": "ERN"
+        }
+    },
+    "Eswatini": {
+        "currency": {
+            "name": "Swazi Lilangeni",
+            "shortForm": "SZL"
+        }
+    },
+    "Ethiopia": {
+        "currency": {
+            "name": "Ethiopian Birr",
+            "shortForm": "ETB"
+        }
+    },
+    "Gabon": {
+        "currency": {
+            "name": "Central African CFA Franc",
+            "shortForm": "XAF"
+        }
+    },
+    "Gambia": {
+        "currency": {
+            "name": "Gambian Dalasi",
+            "shortForm": "GMD"
+        }
+    },
+    "Ghana": {
+        "currency": {
+            "name": "Ghanaian Cedi",
+            "shortForm": "GHS"
+        }
+    },
+    "Guinea": {
+        "currency": {
+            "name": "Guinean Franc",
+            "shortForm": "GNF"
+        }
+    },
+    "Guinea-Bissau": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Kenya": {
+        "currency": {
+            "name": "Kenyan Shilling",
+            "shortForm": "KES"
+        }
+    },
+    "Lesotho": {
+        "currency": {
+            "name": "Lesotho Loti",
+            "shortForm": "LSL"
+        }
+    },
+    "Liberia": {
+        "currency": {
+            "name": "Liberian Dollar",
+            "shortForm": "LRD"
+        }
+    },
+    "Libya": {
+        "currency": {
+            "name": "Libyan Dinar",
+            "shortForm": "LYD"
+        }
+    },
+    "Madagascar": {
+        "currency": {
+            "name": "Malagasy Ariary",
+            "shortForm": "MGA"
+        }
+    },
+    "Malawi": {
+        "currency": {
+            "name": "Malawian Kwacha",
+            "shortForm": "MWK"
+        }
+    },
+    "Mali": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Mauritania": {
+        "currency": {
+            "name": "Mauritanian Ouguiya",
+            "shortForm": "MRU"
+        }
+    },
+    "Mauritius": {
+        "currency": {
+            "name": "Mauritian Rupee",
+            "shortForm": "MUR"
+        }
+    },
+    "Morocco": {
+        "currency": {
+            "name": "Moroccan Dirham",
+            "shortForm": "MAD"
+        }
+    },
+    "Mozambique": {
+        "currency": {
+            "name": "Mozambican Metical",
+            "shortForm": "MZN"
+        }
+    },
+    "Namibia": {
+        "currency": {
+            "name": "Namibian Dollar",
+            "shortForm": "NAD"
+        }
+    },
+    "Niger": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Nigeria": {
+        "currency": {
+            "name": "Nigerian Naira",
+            "shortForm": "NGN"
+        }
+    },
+    "Rwanda": {
+        "currency": {
+            "name": "Rwandan Franc",
+            "shortForm": "RWF"
+        }
+    },
+    "Sao Tome and Principe": {
+        "currency": {
+            "name": "Sao Tome and Principe Dobra",
+            "shortForm": "STN"
+        }
+    },
+    "Senegal": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Seychelles": {
+        "currency": {
+            "name": "Seychellois Rupee",
+            "shortForm": "SCR"
+        }
+    },
+    "Sierra Leone": {
+        "currency": {
+            "name": "Sierra Leonean Leone",
+            "shortForm": "SLL"
+        }
+    },
+    "Somalia": {
+        "currency": {
+            "name": "Somali Shilling",
+            "shortForm": "SOS"
+        }
+    },
+    "South Africa": {
+        "currency": {
+            "name": "South African Rand",
+            "shortForm": "ZAR"
+        }
+    },
+    "South Sudan": {
+        "currency": {
+            "name": "South Sudanese Pound",
+            "shortForm": "SSP"
+        }
+    },
+    "Sudan": {
+        "currency": {
+            "name": "Sudanese Pound",
+            "shortForm": "SDG"
+        }
+    },
+    "Tanzania": {
+        "currency": {
+            "name": "Tanzanian Shilling",
+            "shortForm": "TZS"
+        }
+    },
+    "Togo": {
+        "currency": {
+            "name": "West African CFA Franc",
+            "shortForm": "XOF"
+        }
+    },
+    "Tunisia": {
+        "currency": {
+            "name": "Tunisian Dinar",
+            "shortForm": "TND"
+        }
+    },
+    "Uganda": {
+        "currency": {
+            "name": "Ugandan Shilling",
+            "shortForm": "UGX"
+        }
+    },
+    "Zambia": {
+        "currency": {
+            "name": "Zambian Kwacha",
+            "shortForm": "ZMW"
+        }
+    },
+    "Zimbabwe": {
+        "currency": {
+            "name": "Zimbabwean Dollar",
+            "shortForm": "ZWL"
+        }
+    }
+}
