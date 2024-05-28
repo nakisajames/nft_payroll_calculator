@@ -2,34 +2,55 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function ZambiaUI({ country }) {
   const [income, setIncome] = useState(0);
   const [deductions, setDeductions] = useState(0);
+  const [nssf, setNSSF] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
+  const [nhi,setNHI] = useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+    const otherDeductions = parseFloat(deductions) * 12;
   
-    // Calculate PAYE
-    let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
+    const healthInsurance = grossPay * 0.01;
+  
+    // Calculate the social security
+    let socialSecurity;
+    if (grossPay <= 21476) {
+      socialSecurity = grossPay * 0.05;
     } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
+      socialSecurity = 1342;
+    }
+  
+    // Calculate the taxable income
+    const taxableIncome = grossPay - otherDeductions;
+  
+    let paye;
+    if (taxableIncome < 5101) {
+      paye = 0;
+    } else if (taxableIncome < 7101) {
+      paye = ((taxableIncome - 5100) * 0.2) ;
+    } else if (taxableIncome < 9201) {
+      paye = (((taxableIncome - 7100) * 0.3) + 400) ;
+    } else {
+      paye = (((taxableIncome - 9200) * 0.37) + 1030) ;
     }
     // Calculate net pay
-    const netPay = grossPay - paye;
+    const netPay = grossPay - (paye + socialSecurity + healthInsurance);
   
     // Update results
     setGrossPay(grossPay);
+    setNSSF(socialSecurity);
     setPAYE(paye);
     setNetPay(netPay);
+    setNHI(healthInsurance);
   };
+  
   
   return (
     <div>
@@ -81,8 +102,16 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>PAYE:</label></p>     
-                    <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(nssf.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>National Health Insurance:</label></p>     
+                    <h4 id="paye-value">{formatNumber(nhi.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>PAYE:</label></p>
+                    <h4 id="net-pay-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Net Pay:</label></p>
@@ -96,4 +125,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default ZambiaUI;

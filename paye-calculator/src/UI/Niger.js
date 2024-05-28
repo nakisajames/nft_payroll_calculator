@@ -2,33 +2,64 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function NigerUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
+
+
+  const calculateSocialSecurity = (income) => {
+    if (income <= 500000) {
+        return income * 0.0525;
+    } else {
+        return 500000 * 0.0525;
+    }
+    };
+
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+
+    // Calculate social security per month
+    const social_security = calculateSocialSecurity(income)
+
+    //Taxable Income
+    const taxableIncome = grossPay - social_security
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
+    if (taxableIncome <= 25000) {
+        paye = taxableIncome * 0.01;
+    } else if (taxableIncome <= 50000) {
+        paye = ((taxableIncome - 25000) * 0.02) + 250;
+    } else if (taxableIncome <= 100000) {
+        paye = ((taxableIncome - 50000) * 0.06) + 750;
+    } else if (taxableIncome <= 150000) {
+        paye = ((taxableIncome - 100000) * 0.13) + 3750;
+    } else if (taxableIncome <= 300000) {
+        paye = ((taxableIncome - 150000) * 0.25) + 10250;
+    } else if (taxableIncome <= 400000) {
+        paye = ((taxableIncome - 300000) * 0.30) + 47750;
+    } else if (taxableIncome <= 700000) {
+        paye = ((taxableIncome - 400000) * 0.32) + 77750;
+    } else if (taxableIncome <= 1000000) {
+        paye = ((taxableIncome - 700000) * 0.34) + 173750;
     } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
+        paye = ((taxableIncome - 1000000) * 0.35) + 275750;
     }
+
     // Calculate net pay
-    const netPay = grossPay - paye;
+    const netPay = grossPay - (paye + social_security);
   
-    // Update results
+    // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
+    setSocialSecurity(social_security)
   };
   
   return (
@@ -52,18 +83,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -81,6 +100,10 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -96,4 +119,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default NigerUI;

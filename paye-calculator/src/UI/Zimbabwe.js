@@ -2,33 +2,53 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function ZimbabweUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
+  const [aids,setAIDS] =useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+  
+    // Calculate annual pay
+    const annualPay = grossPay * 12;
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
-    } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
-    }
-    // Calculate net pay
-    const netPay = grossPay - paye;
+        if (annualPay <= 300000) {
+            paye = (annualPay * 0) / 12;
+        } else if (annualPay <= 720000) {
+            paye = ((annualPay - 300000) * 0.2) / 12;
+        } else if (annualPay <= 1440000) {
+            paye = (84000 + (annualPay - 720000) * 0.25) / 12;
+        } else if (annualPay <= 2880000) {
+            paye = (264000 + (annualPay - 1440000) * 0.3) / 12;
+        } else if (annualPay <= 6000000) {
+            paye = (696000 + (annualPay - 2880000) * 0.35) / 12;
+        } else {
+            paye = (1788000 + (annualPay - 6000000) * 0.4) / 12;
+        }
   
-    // Update results
+    // Calculate social security per month
+    const social_security = grossPay * 0.045
+
+    //Calculate AIDS
+    const aids = paye * 0.03
+
+    // Calculate net pay
+    const netPay = grossPay - (paye + social_security + aids);
+  
+    // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
+    setSocialSecurity(social_security)
+    setAIDS(aids)
   };
   
   return (
@@ -52,18 +72,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -81,6 +89,14 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>AIDS:</label></p>
+                    <h4 id="paye-value">{formatNumber(aids.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -96,4 +112,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default ZimbabweUI;

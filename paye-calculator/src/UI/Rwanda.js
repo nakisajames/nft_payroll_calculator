@@ -2,33 +2,58 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function RwandaUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
+  const [maternity,setMaternity] =useState(0)
+  const [cbhi,setCBHI] = useState(0)
+
+// Calculate social security per month
+const calculateSocialSecurity = (grossPay) => {
+    const socialSecurity = grossPay * 0.03; 
+    return socialSecurity;
+    };
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
+    if (grossPay < 60001) {
+        paye = 0;
+    } else if (grossPay < 100000) {
+        paye = (grossPay - 60000) * 0.1;
+    } else if (grossPay < 200000) {
+        paye = ((grossPay - 100000) * 0.2) + 4000;
     } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
+        paye = ((grossPay - 200000) * 0.3) + 4000 + 20000;
     }
+
+    // Calculate social security per month
+    const social_security = grossPay * 0.03;
+
+    //Calculate pension
+    const maternity = grossPay * 0.003
+
+    // Calculate CBHI
+    const cbhi = (grossPay - (social_security + maternity + paye)) * 0.005;
+
+
     // Calculate net pay
-    const netPay = grossPay - paye;
+    const netPay = grossPay - (paye + social_security + cbhi + maternity);
   
-    // Update results
+    // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
+    setSocialSecurity(social_security)
+    setMaternity(maternity)
+    setCBHI(cbhi)
   };
   
   return (
@@ -52,18 +77,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -81,6 +94,18 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>Maternity:</label></p>
+                    <h4 id="paye-value">{formatNumber(maternity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label> CBHI (Community-Based Health Insurance):</label></p>
+                    <h4 id="paye-value">{formatNumber(cbhi.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -96,4 +121,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default RwandaUI;

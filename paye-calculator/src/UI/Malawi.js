@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function MalawiUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
@@ -13,22 +13,30 @@ function LesothoUI({ country }) {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+
+    // Calculate social security per month
+    const social_security = (grossPay * 0.05)
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
+    if (grossPay <= 100000) {
+      paye = 0;
+    } else if (grossPay <= 450000) {
+      paye = ((grossPay - 100000) * 0.25) ;
+    } else if (grossPay <= 2500000) {
+      paye = (((grossPay - 450000) * 0.3) + 87500);
     } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
+      paye = (((grossPay - 2500000) * 0.35) + 625000);
     }
+
     // Calculate net pay
-    const netPay = grossPay - paye;
+    const netPay = grossPay - (paye + social_security);
   
-    // Update results
+    // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
+    setSocialSecurity(social_security)
   };
   
   return (
@@ -52,18 +60,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -81,6 +77,10 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -96,4 +96,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default MalawiUI;

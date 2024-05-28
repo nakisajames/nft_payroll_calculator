@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function BostwanaUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
@@ -13,15 +12,25 @@ function LesothoUI({ country }) {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+  
+    // Calculate annual pay
+    const annualPay = grossPay * 12;
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
-    } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
-    }
+
+  if (annualPay <= 48000) {
+    paye = 0;
+  } else if (annualPay <= 84000) {
+    paye = ((annualPay - 48000) * 0.05) /12;
+  } else if (annualPay <= 120000) {
+    paye = ((annualPay - 84000) * 0.125 + 1800) / 12;
+  } else if (annualPay <= 156000) {
+    paye = ((annualPay - 120000) * 0.1875 + 6300)/ 12;
+  } else {
+    paye = ((annualPay - 156000) * 0.25 + 13050) / 12;
+  }
+
     // Calculate net pay
     const netPay = grossPay - paye;
   
@@ -52,18 +61,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -78,15 +75,15 @@ function LesothoUI({ country }) {
             <h4 class="results-title">Results</h4>
                 <div class="gross-pay">
                     <p><label>Gross Pay:</label></p>
-                    <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
+                    <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(2))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
-                    <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
+                    <h4 id="paye-value">{formatNumber(paye.toFixed(2))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Net Pay:</label></p>
-                    <h4 id="net-pay-value">{formatNumber(netPay.toFixed(0))}</h4>
+                    <h4 id="net-pay-value">{formatNumber(netPay.toFixed(2))}</h4>
                 </div>
             </div>
           </div>
@@ -96,4 +93,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default BostwanaUI;

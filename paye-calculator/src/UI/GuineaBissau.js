@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function GuineaBissauUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
@@ -13,22 +13,43 @@ function LesothoUI({ country }) {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+
+    // Calculate social security per month
+    const social_security = grossPay * 0.08
+
+    //Calculate taxable Income
+    const taxableIncome = (grossPay - social_security)* 12
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
+    if (taxableIncome <= 500000) {
+        paye = (taxableIncome * 0.01) / 12;
+    } else if (taxableIncome <= 1000000) {
+        paye = ((taxableIncome - 500000) * 0.06 + 5000) / 12;
+    } else if (taxableIncome <= 2500000) {
+        paye = ((taxableIncome - 1000000) * 0.08 + 5000 + 30000) / 12;
+    } else if (taxableIncome <= 3600000) {
+        paye = ((taxableIncome - 2500000) * 0.1 + 5000 + 30000 + 120000) / 12;
+    } else if (taxableIncome <= 4806000) {
+        paye = ((taxableIncome - 3600000) * 0.12 + 5000 + 30000 + 120000 + 110000) / 12;
+    } else if (taxableIncome <= 9000000) {
+        paye = ((taxableIncome - 4806000) * 0.14 + 5000 + 30000 + 120000 + 110000 + 144720) / 12;
+    } else if (taxableIncome <= 13200000) {
+        paye = ((taxableIncome - 9000000) * 0.16 + 5000 + 30000 + 120000 + 110000 + 144720 + 587160) / 12;
+    } else if (taxableIncome <= 18000000) {
+        paye = ((taxableIncome - 13200000) * 0.18 + 5000 + 30000 + 120000 + 110000 + 144720 + 587160 + 672000) / 12;
     } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
+        paye = ((taxableIncome - 18000000) * 0.2 + 5000 + 30000 + 120000 + 110000 + 144720 + 587160 + 672000 + 864000) / 12;
     }
+
     // Calculate net pay
-    const netPay = grossPay - paye;
+    const netPay = grossPay - (paye + social_security);
   
-    // Update results
+    // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
+    setSocialSecurity(social_security)
   };
   
   return (
@@ -52,18 +73,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -81,6 +90,10 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -96,4 +109,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default GuineaBissauUI;

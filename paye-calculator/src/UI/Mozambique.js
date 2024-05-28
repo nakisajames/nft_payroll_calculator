@@ -2,9 +2,9 @@
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
 
-function LesothoUI({ country }) {
+function MozambiqueUI({ country }) {
   const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
@@ -13,22 +13,38 @@ function LesothoUI({ country }) {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const gross = parseFloat(grossPay);
+  
+    // Calculate annual pay
+    const annualPay = grossPay * 12;
+
+    // Calculate social security per month
+    const social_security = (grossPay * 0.03)
+
+    //Taxable Income
+    const taxableIncome = annualPay - (social_security * 12)
   
     // Calculate PAYE
     let paye;
-    if (gross <= 5760) {
-        paye = gross * 0.2;
+    if (taxableIncome <= 42000) {
+      paye = (taxableIncome * 0.1) / 12;
+    } else if (taxableIncome <= 168000) {
+      paye = (4200 + (taxableIncome - 42000) * 0.15) / 12;
+    } else if (taxableIncome <= 504000) {
+      paye = (4200 + 18900 + (taxableIncome - 168000) * 0.2) / 12;
+    } else if (taxableIncome <= 1512000) {
+      paye = (4200 + 18900 + 67200 + (taxableIncome - 504000) * 0.25) / 12;
     } else {
-        paye = ((gross - 5760) * 0.3) + 1152 - 902;
+      paye = (4200 + 18900 + 67200 + 252000 + (taxableIncome - 1512000) * 0.32) / 12;
     }
+
     // Calculate net pay
-    const netPay = grossPay - paye;
+    const netPay = grossPay - (paye + social_security);
   
-    // Update results
+    // Update results 
     setGrossPay(grossPay);
     setPAYE(paye);
     setNetPay(netPay);
+    setSocialSecurity(social_security)
   };
   
   return (
@@ -52,18 +68,6 @@ function LesothoUI({ country }) {
               />
               </div>
               </div>
-              <div class ="input-sec">
-              <label>Other Deductions:</label>
-              <div class="input">
-              <input
-                type="number"
-                name="deductions"
-                id="deductions"
-                value={deductions}
-                onChange={(e) => setDeductions(e.target.value)}
-              />
-              </div>
-              </div>
               <div class="button-sec">
                <button 
                class="calculate-btn" 
@@ -81,6 +85,10 @@ function LesothoUI({ country }) {
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
+                    <p><label>Social Security:</label></p>
+                    <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
                     <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
@@ -96,4 +104,4 @@ function LesothoUI({ country }) {
   );
 }
 
-export default LesothoUI;
+export default MozambiqueUI;

@@ -1,11 +1,11 @@
 // CountryUI.js
 import React, { useState } from "react";
+import { formatNumber } from "../utils";
 
 function SouthAfricaUI({ country }) {
   const [income, setIncome] = useState(0);
   const [deductions, setDeductions] = useState(0);
   const [uif, setUIF] = useState(177);
-  const [result, setResult] = useState(0);
   const [age, setAge] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
@@ -92,7 +92,7 @@ function SouthAfricaUI({ country }) {
               <div class ="input-sec">
               <label>UIF:</label>
               <div class="input">
-              <input type="number" name="uif" id="uif" defaultValue={uif} onChange={(e) => setUIF(e.target.value)}/>
+              <input type="number" name="uif" id="uif" defaultValue={uif} onChange={(e) => setUIF(e.target.value)} readOnly/>
               </div>
               </div>
               <div class ="input-sec">
@@ -121,19 +121,19 @@ function SouthAfricaUI({ country }) {
             <h4 class="results-title">Results</h4>
                 <div class="gross-pay">
                     <p><label>Gross Pay:</label></p>
-                    <h4 id="gross-pay-value">{grossPay.toFixed(2)}</h4>
+                    <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>UIF:</label></p>
-                    <h4 id="paye-value">{paye.toFixed(2)}</h4>
+                    <h4 id="paye-value">{formatNumber(uif.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>     
-                    <h4 id="paye-value">{paye.toFixed(2)}</h4>
+                    <h4 id="paye-value">{formatNumber(paye.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>Net Pay:</label></p>
-                    <h4 id="net-pay-value">{netPay.toFixed(2)}</h4>
+                    <h4 id="net-pay-value">{formatNumber(netPay.toFixed(0))}</h4>
                 </div>
             </div>
           </div>
