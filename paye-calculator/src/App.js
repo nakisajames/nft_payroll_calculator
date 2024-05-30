@@ -28,12 +28,12 @@ import MaliUI from "./UI/Mali";
 import SomaliaUI from "./UI/Somalia";
 import SwazilandUI from "./UI/Swaziland";
 import NamibiaUI from "./UI/Namibia";
-import BostwanaUI from "./UI/Bostwana";
+import BotswanaUI from "./UI/Botswana";
 import ZambiaUI from "./UI/Zambia";
 import ZimbabweUI from "./UI/Zimbabwe";
 import MozambiqueUI from "./UI/Mozambique";
 import MalawiUI from "./UI/Malawi";
-import MadagscarUI from "./UI/Madgascar";
+import MadagascarUI from "./UI/Madagascar";
 import AngolaUI from "./UI/Angola";
 import DrcUI from "./UI/Drc";
 import CongoUI from "./UI/Congo";
@@ -44,7 +44,7 @@ import RwandaUI from "./UI/Rwanda";
 import TanzaniaUI from "./UI/Tanzania";
 import NigeriaUI from "./UI/Nigeria";
 import SenegalUI from "./UI/Senegal";
-import EygptUI from "./UI/Eygpt";
+import EygptUI from "./UI/Egypt";
 import MoroccoUI from "./UI/Morocco";
 import SouthSudanUI from './UI/SouthSudan';
 import EquatorialGuineaUI from './UI/EquatorialGuinea';
@@ -103,8 +103,8 @@ function App() {
         return <SwazilandUI country={selectedCountry} />;
       case "Namibia":
         return <NamibiaUI country={selectedCountry} />;
-      case "Bostwana":
-        return <BostwanaUI country={selectedCountry} />;
+      case "Botswana":
+        return <BotswanaUI country={selectedCountry} />;
       case "Zambia":
         return <ZambiaUI country={selectedCountry} />;
       case "Lesotho":
@@ -115,8 +115,8 @@ function App() {
         return <MozambiqueUI country={selectedCountry} />;
       case "Malawi":
         return <MalawiUI country={selectedCountry} />;
-      case "Madagscar":
-        return <MadagscarUI country={selectedCountry} />;
+      case "Madagascar":
+        return <MadagascarUI country={selectedCountry} />;
       case "Angola":
         return <AngolaUI country={selectedCountry} />;
       case "DRC":
@@ -139,7 +139,7 @@ function App() {
         return <SenegalUI country={selectedCountry} />;
       case "Niger":
         return <NigerUI country={selectedCountry} />;
-      case "Eygpt":
+      case "Egypt":
         return <EygptUI country={selectedCountry} />;
       case "Morocco":
         return <MoroccoUI country={selectedCountry} />;
