@@ -1,5 +1,5 @@
 import "./App.css";
-import CountrySelector from "./UI/CountrySelector";
+import CountrySelector, { sortedCountries } from "./UI/CountrySelector";
 import SouthAfricaUI from "./UI/SouthAfrica";
 import TogoUI from "./UI/Togo";
 import GhanaUI from "./UI/Ghana";
@@ -63,7 +63,8 @@ import { useState } from "react";
 
 
 function App() {
-  const [selectedCountry, setSelectedCountry] = useState("South Africa");
+  // const [selectedCountry, setSelectedCountry] = useState("South Africa");
+  const [selectedCountry, setSelectedCountry] = useState(sortedCountries[0]);
 
   const handleSelectCountry = (country) => {
     setSelectedCountry(country);
