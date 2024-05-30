@@ -1,8 +1,11 @@
 // CountryUI.js
 import React, { useState } from "react";
 import { formatNumber } from "../utils";
+import getCurrency from "../lib/utils";
 
 function LesothoUI({ country }) {
+  const currency = getCurrency(country);
+
   const [income, setIncome] = useState(0);
   const [deductions, setDeductions] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
@@ -39,6 +42,19 @@ function LesothoUI({ country }) {
             <div class="inputs-section">
             <form method="post">
               <h4 class="title">{country}</h4>
+              <div class="input-sec">
+                  <label for="currency">Currency:</label>
+                  <div class="input">
+                    <input
+                      type="text"
+                      name="currency"
+                      id="currency"
+                      value={currency}
+                      class="input"
+                      readOnly
+                    />
+                  </div>
+                </div>
               <div class ="input-sec">
               <label>Gross Pay:</label>
               <div class="input">
@@ -76,6 +92,10 @@ function LesothoUI({ country }) {
            
             <div class="outputs-section">
             <h4 class="results-title">Results</h4>
+                <div class="gross-pay">
+                    <p><label>Currency:</label></p>
+                    <h4 id="gross-pay-value">{currency}</h4>
+                </div>
                 <div class="gross-pay">
                     <p><label>Gross Pay:</label></p>
                     <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(0))}</h4>
