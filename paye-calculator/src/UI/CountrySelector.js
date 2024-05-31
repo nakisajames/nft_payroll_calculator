@@ -18,7 +18,7 @@ function CountrySelector({ onSelectCountry }) {
   };
 
   return (
-    <div>
+    <div style={{ textAlign: 'center'}}>
       <select onChange={handleChange} defaultValue="Uganda" class="selector">
         {countries.map((country) => (
           <option key={country} value={country}>
