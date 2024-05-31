@@ -58,8 +58,7 @@ function AlgeriaUI({ country }) {
     };
   
     return (
-      <div>
-        <body>
+        <div class="app-container">
           <div class="card">
             <div class="card-container">
               <div class="inputs-section">
@@ -116,7 +115,7 @@ function AlgeriaUI({ country }) {
                   <p>
                     <label>Gross Pay:</label>
                   </p>
-                  <h4 id="gross-pay-value">{grossPay.toFixed(2)}</h4>
+                  <h4 id="output-value">{grossPay.toFixed(2)}</h4>
                 </div>
                 <div class="gross-pay">
                   <p>
@@ -139,8 +138,7 @@ function AlgeriaUI({ country }) {
               </div>
             </div>
           </div>
-        </body>
-      </div>
+        </div>
     );
 }
   
