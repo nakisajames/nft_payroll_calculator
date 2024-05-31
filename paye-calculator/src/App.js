@@ -64,7 +64,7 @@ import { useState } from "react";
 
 function App() {
   // const [selectedCountry, setSelectedCountry] = useState("South Africa");
-  const [selectedCountry, setSelectedCountry] = useState(sortedCountries[0]);
+  const [selectedCountry, setSelectedCountry] = useState("Uganda");
 
   const handleSelectCountry = (country) => {
     setSelectedCountry(country);
