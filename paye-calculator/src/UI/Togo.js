@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { formatNumber } from "../utils";
 import getCurrency from "../lib/utils";
 
 function TogoUI({ country }) {
@@ -70,7 +70,7 @@ function TogoUI({ country }) {
   
     return (
       <div>
-        <body>
+        <div>
           <div class="card">
             <div class="card-container">
               <div class="inputs-section">
@@ -93,11 +93,12 @@ function TogoUI({ country }) {
                     <label for="gross_pay">Gross Pay:</label>
                     <div class="input">
                       <input
-                        type="number"
+                        type="text"
                         name="gross_pay"
                         id="gross_pay"
                         value={income}
                         class="input"
+                        onFocus={(e) => e.target.value === "0" && setIncome("")}
                         onChange={(e) => setIncome(e.target.value)}
                       />
                     </div>
@@ -127,36 +128,36 @@ function TogoUI({ country }) {
                   <p>
                     <label>Gross Pay:</label>
                   </p>
-                  <h4 id="gross-pay-value">{grossPay.toFixed(2)}</h4>
+                  <h4 id="gross-pay-value">{formatNumber(grossPay.toFixed(2))}</h4>
                 </div>
                 <div class="gross-pay">
                   <p>
                     <label>Social Security-Employee (CNSS):</label>
                   </p>
-                  <h4 id="social-security-value">{socialSecurity.toFixed(2)}</h4>
+                  <h4 id="social-security-value">{formatNumber(socialSecurity.toFixed(2))}</h4>
                 </div>
                 <div class="gross-pay">
                   <p>
                     <label>Standard Abatement:</label>
                   </p>
-                  <h4 id="social-security-value">{stdAbatement.toFixed(2)}</h4>
+                  <h4 id="social-security-value">{formatNumber(stdAbatement.toFixed(2))}</h4>
                 </div>
                 <div class="gross-pay">
                   <p>
                     <label>PAYE:</label>
                   </p>
-                  <h4 id="paye-value">{paye.toFixed(2)}</h4>
+                  <h4 id="paye-value">{formatNumber(paye.toFixed(2))}</h4>
                 </div>
                 <div class="gross-pay">
                   <p>
                     <label>Net Pay:</label>
                   </p>
-                  <h4 id="net-pay-value">{netPay.toFixed(2)}</h4>
+                  <h4 id="net-pay-value">{formatNumber(netPay.toFixed(2))}</h4>
                 </div>
               </div>
             </div>
           </div>
-        </body>
+        </div>
       </div>
     );
 }

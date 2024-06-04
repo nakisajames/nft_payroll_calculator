@@ -45,7 +45,7 @@ function BotswanaUI({ country }) {
   
   return (
     <div>
-      <body>
+      <div>
         <div class="card">
           <div class="card-container">
             <div class="inputs-section">
@@ -68,11 +68,12 @@ function BotswanaUI({ country }) {
               <label>Gross Pay:</label>
               <div class="input">
               <input
-                type="number"
+                type="text"
                 name="gross_pay"
                 id="gross_pay"
                 value={income}
                 class="input"
+                onFocus={(e) => e.target.value === "0" && setIncome("")}
                 onChange={(e) => setIncome(e.target.value)}
               />
               </div>
@@ -113,7 +114,7 @@ function BotswanaUI({ country }) {
             </div>
           </div>
         </div>
-      </body>      
+      </div>      
     </div>
   );
 }

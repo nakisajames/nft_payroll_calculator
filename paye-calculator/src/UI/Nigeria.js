@@ -109,7 +109,7 @@ const gross_relief = totalTaxableEarnings * 0.2
   
   return (
     <div>
-      <body>
+      <div>
         <div class="card">
           <div class="card-container">
             <div class="inputs-section">
@@ -132,11 +132,12 @@ const gross_relief = totalTaxableEarnings * 0.2
               <label>Gross Pay:</label>
               <div class="input">
               <input
-                type="number"
+                type="text"
                 name="gross_pay"
                 id="gross_pay"
                 value={income}
                 class="input"
+                onFocus={(e) => e.target.value === "0" && setIncome("")}
                 onChange={(e) => setIncome(e.target.value)}
               />
               </div>
@@ -145,11 +146,12 @@ const gross_relief = totalTaxableEarnings * 0.2
               <label>Transport Allowance:</label>
               <div class="input">
               <input
-                type="number"
+                type="text"
                 name="transport"
                 id="transport"
                 value={transportAllowance}
                 class="input"
+                onFocus={(e) => e.target.value === "0" && setTransportAllowance("")}
                 onChange={(e) => setTransportAllowance(e.target.value)}
               />
               </div>
@@ -159,11 +161,12 @@ const gross_relief = totalTaxableEarnings * 0.2
               <label>Housing Allowance:</label>
               <div class="input">
               <input
-                type="number"
+                type="text"
                 name="housing"
                 id="housing"
                 value={housingAllowance}
                 class="input"
+                onFocus={(e) => e.target.value === "0" && setHousingAllowance("")}
                 onChange={(e) => setHousingAllowance(e.target.value)}
               />
               </div>
@@ -173,11 +176,12 @@ const gross_relief = totalTaxableEarnings * 0.2
               <label>Other Allowances:</label>
               <div class="input">
               <input
-                type="number"
+                type="text"
                 name="housing"
                 id="housing"
                 value={housingAllowance}
                 class="input"
+                onFocus={(e) => e.target.value === "0" && setHousingAllowance("")}
                 onChange={(e) => setHousingAllowance(e.target.value)}
               />
               </div>
@@ -242,7 +246,7 @@ const gross_relief = totalTaxableEarnings * 0.2
             </div>
           </div>
         </div>
-      </body>      
+      </div>      
     </div>
   );
 }
