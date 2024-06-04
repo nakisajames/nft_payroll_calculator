@@ -55,12 +55,8 @@ import GuineaBissauUI from './UI/GuineaBissau';
 import MauritaniaUI from './UI/Mauritania';
 import UgandaUI from './UI/Uganda';
 import { useState } from "react";
-
-
-
-
-
-
+import { WhatsAppWidget } from 'react-whatsapp-widget';
+import 'react-whatsapp-widget/dist/index.css';
 
 function App() {
   // const [selectedCountry, setSelectedCountry] = useState("South Africa");
@@ -220,6 +216,7 @@ function App() {
         <h4 class="title">Africa Payroll Calculator</h4>
         <CountrySelector onSelectCountry={handleSelectCountry} />
       </header>
+      <WhatsAppWidget  message={`Hello! 👋🏼 \n\nWhat can we do for you?`} phoneNumber="256709252757"/>
       {renderCountryUI()}
     </div>
   );
