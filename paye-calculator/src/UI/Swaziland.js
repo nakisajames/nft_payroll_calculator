@@ -9,11 +9,11 @@ function SwazilandUI({ country }) {
     currency = getCurrency("Eswatini");
   }
   
-  const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
-  const [npf, setNPF] = useState(185);
+  const [income, setIncome] = useState("0");
+  const [deductions, setDeductions] = useState("0");
+  const [npf, setNPF] = useState("185");
   const [graded_tax, setGradedtax] = useState(18);
-  const [age, setAge] = useState(0);
+  const [age, setAge] = useState("0");
   const [grossPay, setGrossPay] = useState(0);
   const [netPay, setNetPay] = useState(0);
   const [paye, setPAYE] = useState(0);

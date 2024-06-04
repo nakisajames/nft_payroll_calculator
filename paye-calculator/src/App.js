@@ -217,7 +217,7 @@ function App() {
           class="image"
           alt="NFT App Logo"
         />
-        <h4 class="title">Country Payroll Calculator</h4>
+        <h4 class="title">Africa Payroll Calculator</h4>
         <CountrySelector onSelectCountry={handleSelectCountry} />
       </header>
       {renderCountryUI()}

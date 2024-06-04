@@ -6,16 +6,16 @@ import getCurrency from "../lib/utils";
 function NigeriaUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState(0);
+  const [income, setIncome] = useState("0");
   const [pension, setPension] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
   const [nhif,setNhif] =useState(0)
   const [nhf, setNhf] = useState(0); 
-  const [housingAllowance,setHousingAllowance] = useState(0)
-  const [transportAllowance,setTransportAllowance] = useState(0)
-  const [otherAllowances,setOtherAllowances] = useState(0)
+  const [housingAllowance,setHousingAllowance] = useState("0")
+  const [transportAllowance,setTransportAllowance] = useState("0")
+  const [otherAllowances,setOtherAllowances] = useState("0")
 //   const [consolidatedRelief,setConsolidatedRelief] = useState(0)
 //   const [grossRelief, setGrossRelief] = useState(0)
 

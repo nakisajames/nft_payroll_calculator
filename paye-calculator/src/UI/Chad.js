@@ -5,8 +5,8 @@ import getCurrency from "../lib/utils";
 function ChadUI({ country }) {
     const currency = getCurrency(country);
 
-    const FIR = 40;
-    const [income, setIncome] = useState(0);
+    const fir = 40;
+    const [income, setIncome] = useState("0");
     const [grossPay, setGrossPay] = useState(0);
     const [socialSecurity, setSocialSecurity] = useState(0);
     const [paye, setPaye] = useState(0);
@@ -49,7 +49,7 @@ function ChadUI({ country }) {
       paye = computePAYE(annualTaxableIncome);
   
       // Calculate the netpay
-      const netPay = grossPay - (socialSecurity + paye + FIR);
+      const netPay = grossPay - (socialSecurity + paye + fir);
   
       // Update results
       setGrossPay(grossPay);
@@ -85,7 +85,7 @@ function ChadUI({ country }) {
                         type="number"
                         name="fir"
                         id="fir"
-                        value={FIR}
+                        value={fir}
                         class="input"
                         readOnly
                       />
@@ -148,7 +148,7 @@ function ChadUI({ country }) {
                   <p>
                     <label>F.I.R (Rural Intervention Fund):</label>
                   </p>
-                  <h4 id="paye-value">{FIR.toFixed(2)}</h4>
+                  <h4 id="paye-value">{fir.toFixed(2)}</h4>
                 </div>
                 <div class="gross-pay">
                   <p>

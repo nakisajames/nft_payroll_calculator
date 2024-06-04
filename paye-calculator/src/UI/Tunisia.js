@@ -6,7 +6,7 @@ function TunisiaUI({ country }) {
     const currency = getCurrency(country);
     
     const [socialSolidarity, setSocialSolidarity] = useState(0);
-    const [income, setIncome] = useState(0);
+    const [income, setIncome] = useState("0");
     const [grossPay, setGrossPay] = useState(0);
     const [socialSecurity, setSocialSecurity] = useState(0);
     const [paye, setPaye] = useState(0);

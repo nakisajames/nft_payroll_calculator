@@ -6,8 +6,8 @@ import getCurrency from "../lib/utils";
 function ZambiaUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState(0);
-  const [deductions, setDeductions] = useState(0);
+  const [income, setIncome] = useState("0");
+  const [deductions, setDeductions] = useState("0");
   const [nssf, setNSSF] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
