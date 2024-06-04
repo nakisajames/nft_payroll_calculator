@@ -8,7 +8,7 @@ function SouthAfricaUI({ country }) {
 
   const [income, setIncome] = useState();
   const [deductions, setDeductions] = useState();
-  const [uif, setUIF] = useState("177");
+  const [uif, setUIF] = useState(177);
   const [age, setAge] = useState();
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)

@@ -11,7 +11,7 @@ function SwazilandUI({ country }) {
   
   const [income, setIncome] = useState();
   const [deductions, setDeductions] = useState();
-  const [npf, setNPF] = useState("185");
+  const [npf, setNPF] = useState(185);
   const [graded_tax, setGradedtax] = useState(18);
   const [age, setAge] = useState();
   const [grossPay, setGrossPay] = useState(0);
