@@ -6,8 +6,8 @@ import getCurrency from "../lib/utils";
 function LesothoUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState("0");
-  const [deductions, setDeductions] = useState(0);
+  const [income, setIncome] = useState();
+  const [deductions, setDeductions] = useState();
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
@@ -64,6 +64,7 @@ function LesothoUI({ country }) {
                 id="gross_pay"
                 value={income}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setIncome(e.target.value)}
               />
               </div>
@@ -76,6 +77,7 @@ function LesothoUI({ country }) {
                 name="deductions"
                 id="deductions"
                 value={deductions}
+                placeholder="0"
                 onChange={(e) => setDeductions(e.target.value)}
               />
               </div>

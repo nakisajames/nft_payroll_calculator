@@ -6,16 +6,16 @@ import getCurrency from "../lib/utils";
 function NigeriaUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState("0");
+  const [income, setIncome] = useState();
   const [pension, setPension] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
   const [nhif,setNhif] =useState(0)
   const [nhf, setNhf] = useState(0); 
-  const [housingAllowance,setHousingAllowance] = useState("0")
-  const [transportAllowance,setTransportAllowance] = useState("0")
-  const [otherAllowances,setOtherAllowances] = useState("0")
+  const [housingAllowance,setHousingAllowance] = useState()
+  const [transportAllowance,setTransportAllowance] = useState()
+  const [otherAllowances,setOtherAllowances] = useState()
 //   const [consolidatedRelief,setConsolidatedRelief] = useState(0)
 //   const [grossRelief, setGrossRelief] = useState(0)
 
@@ -137,6 +137,7 @@ const gross_relief = totalTaxableEarnings * 0.2
                 id="gross_pay"
                 value={income}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setIncome(e.target.value)}
               />
               </div>
@@ -150,6 +151,7 @@ const gross_relief = totalTaxableEarnings * 0.2
                 id="transport"
                 value={transportAllowance}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setTransportAllowance(e.target.value)}
               />
               </div>
@@ -164,6 +166,7 @@ const gross_relief = totalTaxableEarnings * 0.2
                 id="housing"
                 value={housingAllowance}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setHousingAllowance(e.target.value)}
               />
               </div>
@@ -178,6 +181,7 @@ const gross_relief = totalTaxableEarnings * 0.2
                 id="housing"
                 value={housingAllowance}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setHousingAllowance(e.target.value)}
               />
               </div>

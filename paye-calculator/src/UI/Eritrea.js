@@ -10,7 +10,7 @@ import getCurrency from "../lib/utils";
 
 function EritreaUI({ country }) {
     const currency = getCurrency(country);
-    const [income, setIncome] = useState("0");
+    const [income, setIncome] = useState();
     const [grossPay, setGrossPay] = useState(0);
     const [paye, setPaye] = useState(0);
     const [netPay, setNetPay] = useState(0);
@@ -88,6 +88,7 @@ function EritreaUI({ country }) {
                         id="gross_pay"
                         value={income}
                         class="input"
+                        placeholder="0"
                         onChange={(e) => setIncome(e.target.value)}
                       />
                     </div>

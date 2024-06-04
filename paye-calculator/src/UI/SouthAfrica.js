@@ -6,10 +6,10 @@ import getCurrency from "../lib/utils";
 function SouthAfricaUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState("0");
-  const [deductions, setDeductions] = useState("0");
+  const [income, setIncome] = useState();
+  const [deductions, setDeductions] = useState();
   const [uif, setUIF] = useState("177");
-  const [age, setAge] = useState("0");
+  const [age, setAge] = useState();
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
@@ -95,6 +95,7 @@ function SouthAfricaUI({ country }) {
                 id="gross_pay"
                 value={income}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setIncome(e.target.value)}
               />
               </div>
@@ -102,7 +103,7 @@ function SouthAfricaUI({ country }) {
               <div class ="input-sec">
               <label>Age Group:</label>
               <div class="input">
-              <input type="number" name="age" id="age" value={age} onChange={(e) => setAge(e.target.value)} />
+              <input type="number" name="age" id="age" value={age}  placeholder="0" onChange={(e) => setAge(e.target.value)} />
               </div>
               </div>
               <div class ="input-sec">
@@ -119,6 +120,7 @@ function SouthAfricaUI({ country }) {
                 name="deductions"
                 id="deductions"
                 value={deductions}
+                placeholder="0"
                 onChange={(e) => setDeductions(e.target.value)}
               />
               </div>

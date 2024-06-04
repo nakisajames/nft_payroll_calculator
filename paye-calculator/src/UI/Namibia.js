@@ -6,7 +6,7 @@ import getCurrency from "../lib/utils";
 function NamibiaUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState('0');
+  const [income, setIncome] = useState();
   const [socialSecurity, setSocialSecurity] = useState(81);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
@@ -81,6 +81,7 @@ function NamibiaUI({ country }) {
                 id="gross_pay"
                 value={income}
                 class="input"
+                placeholder="0"
                 onChange={(e) => setIncome(e.target.value)}
               />
               </div>

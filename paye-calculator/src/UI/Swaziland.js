@@ -9,11 +9,11 @@ function SwazilandUI({ country }) {
     currency = getCurrency("Eswatini");
   }
   
-  const [income, setIncome] = useState("0");
-  const [deductions, setDeductions] = useState("0");
+  const [income, setIncome] = useState();
+  const [deductions, setDeductions] = useState();
   const [npf, setNPF] = useState("185");
   const [graded_tax, setGradedtax] = useState(18);
-  const [age, setAge] = useState("0");
+  const [age, setAge] = useState();
   const [grossPay, setGrossPay] = useState(0);
   const [netPay, setNetPay] = useState(0);
   const [paye, setPAYE] = useState(0);
@@ -98,6 +98,7 @@ function SwazilandUI({ country }) {
                       id="gross_pay"
                       value={income}
                       class="input"
+                      placeholder="0"
                       onChange={(e) => setIncome(e.target.value)}
                     />
                   </div>
@@ -110,6 +111,7 @@ function SwazilandUI({ country }) {
                       name="age"
                       id="age"
                       value={age}
+                      placeholder="0"
                       onChange={(e) => setAge(e.target.value)}
                     />
                   </div>
@@ -134,6 +136,7 @@ function SwazilandUI({ country }) {
                       name="deductions"
                       id="deductions"
                       value={deductions}
+                      placeholder="0"
                       onChange={(e) => setDeductions(e.target.value)}
                     />
                   </div>

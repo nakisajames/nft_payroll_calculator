@@ -5,7 +5,7 @@ import getCurrency from "../lib/utils";
 function CapeVerdeUI({ country }) {
     const currency = getCurrency(country);
     
-    const [income, setIncome] = useState("0");
+    const [income, setIncome] = useState();
     const [grossPay, setGrossPay] = useState(0);
     const [socialSecurity, setSocialSecurity] = useState(0);
     const [paye, setPaye] = useState(0);
@@ -87,6 +87,7 @@ function CapeVerdeUI({ country }) {
                         id="gross_pay"
                         value={income}
                         class="input"
+                        placeholder="0"
                         onChange={(e) => setIncome(e.target.value)}
                       />
                     </div>
