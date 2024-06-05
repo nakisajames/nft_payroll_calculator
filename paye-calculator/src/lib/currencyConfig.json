@@ -31,7 +31,7 @@
     },
     "Burundi": {
         "currency": {
-            "name": "Burundian Franc",
+            "name": "Burundi Franc",
             "shortForm": "BIF"
         }
     },
@@ -319,8 +319,8 @@
     },
     "Zimbabwe": {
         "currency": {
-            "name": "Zimbabwean Dollar",
-            "shortForm": "ZWL"
+            "name": "United States Dollar",
+            "shortForm": "USD"
         }
     }
 }
