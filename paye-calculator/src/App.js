@@ -208,11 +208,12 @@ function App() {
   return (
     <div>
       <header>
-        <img
+        {/* <img
           src={require("./static/img/logo/nft_app_logo.jpeg")}
           class="image"
           alt="NFT App Logo"
-        />
+          hidden
+        /> */}
         <h4 class="title">Africa Payroll Calculator</h4>
         <CountrySelector onSelectCountry={handleSelectCountry} />
       </header>
