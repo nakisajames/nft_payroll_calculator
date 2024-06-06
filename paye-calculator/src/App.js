@@ -216,7 +216,7 @@ function App() {
         <h4 class="title">Africa Payroll Calculator</h4>
         <CountrySelector onSelectCountry={handleSelectCountry} />
       </header>
-      <WhatsAppWidget  message={`Hello! 👋🏼 \n\nWhat can we do for you?`} phoneNumber="256709252757"/>
+      <WhatsAppWidget  message={`Hello! 👋🏼 \n\nWhat can we do for you?`} phoneNumber="256709252757" />
       {renderCountryUI()}
     </div>
   );

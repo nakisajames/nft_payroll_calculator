@@ -54,3 +54,13 @@
   margin: 0 auto;
   max-height: 100px; 
 }
+
+._1yCVn._1qse9 {
+  z-index: 1;
+}
+
+._2qp0Z {
+  background-color: rgb(79, 206, 93) !important; /* WhatsApp green */
+  color: white !important;; /* Text color */
+  border: none ; /* Remove border if any */
+}
