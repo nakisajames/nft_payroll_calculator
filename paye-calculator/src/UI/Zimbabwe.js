@@ -6,7 +6,7 @@ import getCurrency from "../lib/utils";
 function ZimbabweUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState();
+  const [income, setIncome] = useState(0);
   const [socialSecurity, setSocialSecurity] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
@@ -23,19 +23,20 @@ function ZimbabweUI({ country }) {
   
     // Calculate PAYE
     let paye;
-        if (annualPay <= 300000) {
-            paye = (annualPay * 0) / 12;
-        } else if (annualPay <= 720000) {
-            paye = ((annualPay - 300000) * 0.2) / 12;
-        } else if (annualPay <= 1440000) {
-            paye = (84000 + (annualPay - 720000) * 0.25) / 12;
-        } else if (annualPay <= 2880000) {
-            paye = (264000 + (annualPay - 1440000) * 0.3) / 12;
-        } else if (annualPay <= 6000000) {
-            paye = (696000 + (annualPay - 2880000) * 0.35) / 12;
-        } else {
-            paye = (1788000 + (annualPay - 6000000) * 0.4) / 12;
-        }
+  if (annualPay <= 1200) {
+    paye = (annualPay * 0 - 0) / 12;
+  } else if (annualPay <= 3600) {
+    paye = (annualPay * 0.2 - 240) / 12;
+  } else if (annualPay <= 12000) {
+    paye = (annualPay * 0.25 - 420) / 12;
+  } else if (annualPay <= 24000) {
+    paye = (annualPay * 0.3 - 1020) / 12;
+  } else if (annualPay <= 36000) {
+    paye = (annualPay * 0.35 - 2220) / 12;
+  } else {
+    paye = (annualPay * 0.4 - 4020) / 12;
+  }
+
   
     // Calculate social security per month
     const social_security = grossPay * 0.045
@@ -82,7 +83,7 @@ function ZimbabweUI({ country }) {
                 type="number"
                 name="gross_pay"
                 id="gross_pay"
-                value={income}
+                value={income === 0 ? "": income}
                 class="input"
                 placeholder="0"
                 onChange={(e) => setIncome(e.target.value)}

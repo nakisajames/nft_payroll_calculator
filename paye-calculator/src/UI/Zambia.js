@@ -6,32 +6,41 @@ import getCurrency from "../lib/utils";
 function ZambiaUI({ country }) {
   const currency = getCurrency(country);
 
-  const [income, setIncome] = useState();
-  const [deductions, setDeductions] = useState();
+  const [income, setIncome] = useState(0);
+  const [deductions, setDeductions] = useState(0);
   const [nssf, setNSSF] = useState(0);
   const [grossPay,setGrossPay] =useState(0)
   const [netPay,setNetPay] = useState(0)
   const [paye,setPAYE] = useState(0)
   const [nhi,setNHI] = useState(0)
+  const [lunchAllowance,setLunchAllowance] = useState(0)
+  const [transportAllowance,setTransportAllowance] = useState(0)
+  const [housingAllowance, setHousingAllowance] = useState(0)
 
   const calculatePAYE = (e) => {
     e.preventDefault();
     // Convert input values to numbers
     const grossPay = parseFloat(income);
-    const otherDeductions = parseFloat(deductions) * 12;
+    const otherDeductions = parseFloat(deductions)
+
+    //Allowances
+    const lunchMoney = 0.05 * grossPay;
+    const housingMoney = 0.4 * grossPay
+    const transportMoney = 0.05 * grossPay;
   
     const healthInsurance = grossPay * 0.01;
   
-    // Calculate the social security
-    let socialSecurity;
-    if (grossPay <= 21476) {
-      socialSecurity = grossPay * 0.05;
-    } else {
-      socialSecurity = 1342;
-    }
+  // Calculate the social security
+      let socialSecurity;
+      if (grossPay <= 1490.8) {
+        socialSecurity = grossPay * 0.05;
+      } else {
+        socialSecurity = 1490.8;
+      }
   
+  const totalGross = grossPay + transportMoney ?? 0 + lunchMoney ?? 0 + housingMoney ?? 0
     // Calculate the taxable income
-    const taxableIncome = grossPay - otherDeductions;
+    const taxableIncome = totalGross - otherDeductions;
   
     let paye;
     if (taxableIncome < 5101) {
@@ -44,7 +53,7 @@ function ZambiaUI({ country }) {
       paye = (((taxableIncome - 9200) * 0.37) + 1030) ;
     }
     // Calculate net pay
-    const netPay = grossPay - (paye + socialSecurity + healthInsurance);
+    const netPay = grossPay - (paye + socialSecurity );
   
     // Update results
     setGrossPay(grossPay);
@@ -52,6 +61,9 @@ function ZambiaUI({ country }) {
     setPAYE(paye);
     setNetPay(netPay);
     setNHI(healthInsurance);
+    setLunchAllowance(lunchMoney)
+    setHousingAllowance(housingMoney)
+    setTransportAllowance(transportMoney)
   };
   
   
@@ -83,7 +95,7 @@ function ZambiaUI({ country }) {
                 type="number"
                 name="gross_pay"
                 id="gross_pay"
-                value={income}
+                value={income === 0 ? "" : income}
                 class="input"
                 placeholder="0"
                 onChange={(e) => setIncome(e.target.value)}
@@ -97,7 +109,7 @@ function ZambiaUI({ country }) {
                 type="number"
                 name="deductions"
                 id="deductions"
-                value={deductions}
+                value={deductions === 0 ? "" : deductions}
                 placeholder="0"
                 onChange={(e) => setDeductions(e.target.value)}
               />
@@ -130,6 +142,18 @@ function ZambiaUI({ country }) {
                 <div class="gross-pay">
                     <p><label>National Health Insurance:</label></p>     
                     <h4 id="paye-value">{formatNumber(nhi.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>Housing Allowance:</label></p>     
+                    <h4 id="paye-value">{formatNumber(housingAllowance.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>Lunch Allowance:</label></p>     
+                    <h4 id="paye-value">{formatNumber(lunchAllowance.toFixed(0))}</h4>
+                </div>
+                <div class="gross-pay">
+                    <p><label>Transport ALlowance:</label></p>     
+                    <h4 id="paye-value">{formatNumber(transportAllowance.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
                     <p><label>PAYE:</label></p>
