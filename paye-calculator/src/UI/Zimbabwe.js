@@ -115,7 +115,7 @@ function ZimbabweUI({ country }) {
                     <h4 id="paye-value">{formatNumber(socialSecurity.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>AIDS:</label></p>
+                    <p><label>AIDS Levy:</label></p>
                     <h4 id="paye-value">{formatNumber(aids.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">

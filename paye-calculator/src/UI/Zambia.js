@@ -152,7 +152,7 @@ function ZambiaUI({ country }) {
                     <h4 id="paye-value">{formatNumber(lunchAllowance.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
-                    <p><label>Transport ALlowance:</label></p>     
+                    <p><label>Transport Allowance:</label></p>     
                     <h4 id="paye-value">{formatNumber(transportAllowance.toFixed(0))}</h4>
                 </div>
                 <div class="gross-pay">
